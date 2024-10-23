@@ -9,13 +9,16 @@ def handle_cmd(req):
     return os.system(req.cmd)
 
 def cmd_server():
-    nodename = "cmd_service"
+    nodename = "cmd_service_node"
+    servicename = "cmd_service"
     if(os.getlogin() == "robofeilab"):
-        nodename = "cmd_service_nuc"
+        nodename += "_nuc"
+        servicename += "_nuc"
     if(os.getlogin() == "robofei"):
-        nodename = "cmd_service_jetson"
+        nodename += "_jetson"
+        servicename += "_jetson"
     rospy.init_node(nodename)
-    rospy.Service('cmd_service', CmdService,  handle_cmd)
+    rospy.Service(servicename, CmdService,  handle_cmd)
     print("Ready to receive commands")
     rospy.spin()
 
