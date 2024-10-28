@@ -1,2 +1,2 @@
 # system_integration
-Integrate systems with this brand new package
+Package to help Jetson/NUC integration
