@@ -2,6 +2,7 @@
 
 import os
 import rospy
+import socket
 
 from system_integration.srv import CmdService
 
@@ -11,10 +12,10 @@ def handle_cmd(req):
 def cmd_server():
     nodename = "cmd_service_node"
     servicename = "cmd_service"
-    if(os.getlogin() == "robofeilab"):
+    if(socket.gethostname() == "robofeinuc"):
         nodename += "_nuc"
         servicename += "_nuc"
-    if(os.getlogin() == "robofei"):
+    if(socket.gethostname() == "ubuntu"):
         nodename += "_jetson"
         servicename += "_jetson"
     rospy.init_node(nodename)
